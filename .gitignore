@@ -1,0 +1,13 @@
+# Python
+*.py[cod]
+
+# virtualenv
+venv/
+
+# DB
+*.db
+db.sqlite3
+
+# Sass
+.sass-cache/
+*.map
