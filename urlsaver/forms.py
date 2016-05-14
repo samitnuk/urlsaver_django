@@ -7,10 +7,9 @@ class LoginForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
 
-    clean(self):
+    def clean(self):
         email = self.cleaned_data['email']
-        user = User.objects.get(email=email)
-        if user is None:
+        if not User.objects.filter(email=email).exists():
             raise forms.ValidationError('Invalid user.')
 
         password = self.cleaned_data['password']
@@ -24,17 +23,18 @@ class RegistrationForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
     confirm = forms.CharField(widget=forms.PasswordInput)
 
-    clean_email(self):
+    def clean_email(self):
         email = self.cleaned_data['email']
-        user = User.objects.get(email=email)
-        if user is not None:
-            raise forms.ValidationError('This email already registered.'"')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError('This email already registered.')
+        return email
 
-    clean_confirm(self):
+    def clean_confirm(self):
         password = self.cleaned_data['password']
         confirm = self.cleaned_data['confirm']
         if password != confirm:
             raise forms.ValidationError('Passwords must match.')
+        return password
 
 
 class EditForm(forms.Form):
