@@ -9,7 +9,7 @@ from .forms import (LoginForm, RegistrationForm,
                     EditForm, SearchForm, RestorePasswordForm)
 
 def main_view(request):
-    return HttpResponse("Hello, World! This is main page!")
+    return render(request, 'main.html')
 
 
 def register_view(request):
@@ -29,10 +29,14 @@ def register_view(request):
     return render(request, 'register.html', {'form': form})
 
 
-def login_view(reguest):
-    return HttpResponse("Login View")
+def login_view(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+    else:
+        form = LoginForm()
+    return render(request, 'login.html', {'form': form})
 
 
 @login_required
-def logout_view(reguest):
+def logout_view(request):
     return HttpResponse("Logout View")
