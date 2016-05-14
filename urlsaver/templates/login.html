@@ -1,0 +1,14 @@
+<h1>Login Page</h1>
+
+<form action="/register/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    {% if form.subject.errors %}
+    <ol>
+    {% for error in form.subject.errors %}
+        <li><strong>{{ error|escape }}</strong></li>
+    {% endfor %}
+    </ol>
+{% endif %}
+    <input type="submit" value="Login" />
+</form>
