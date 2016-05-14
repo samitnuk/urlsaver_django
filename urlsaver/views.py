@@ -22,7 +22,7 @@ def register_view(request):
             password = form.cleaned_data['password']
             user = User(username=username, password=password, email=email)
             user.save()
-            return redirect('main')
+            return redirect('main') # name for main_view in urls
     else: # if a GET (or any other method) we'll create a blank form
         form = RegistrationForm()
 
