@@ -7,12 +7,6 @@ class LoginForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
 
-    # def clean_email(self):
-    #     email = self.cleaned_data['email']
-    #     if not User.objects.filter(email=email).exists():
-    #         raise forms.ValidationError('Invalid user.')
-    #     return email
-
     def clean(self):
         cleaned_data = super(LoginForm, self).clean()
         email = cleaned_data.get('email')

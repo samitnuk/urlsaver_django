@@ -40,10 +40,9 @@ def login_view(request):
             username = email.split('@')[0]
             password = form.cleaned_data['password']
             user = authenticate(username=username, password=password)
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return redirect('main') # name for main_view in urls
+            if user is not None and user.is_active:
+                login(request, user)
+                return redirect('main') # name for main_view in urls
     else: # if a GET (or any other method) we'll create a blank form
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
