@@ -1,6 +1,6 @@
 <h1>Login Page</h1>
 
-<form action="/register/" method="post">
+<form action="/login/" method="post">
     {% csrf_token %}
     {{ form }}
     {% if form.subject.errors %}
