@@ -1,2 +1,5 @@
 django
 pyjade
+
+requests
+beautifulsoup4
