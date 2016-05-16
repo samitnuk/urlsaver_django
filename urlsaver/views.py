@@ -50,4 +50,5 @@ def login_view(request):
 
 @login_required(login_url='/login/')
 def logout_view(request):
-    return HttpResponse("Logout View")
+    logout(request)
+    return render(request, 'main.html')
