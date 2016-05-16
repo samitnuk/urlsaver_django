@@ -9,6 +9,8 @@ from django.http import HttpResponse
 from .forms import (LoginForm, RegistrationForm,
                     EditForm, SearchForm, RestorePasswordForm)
 
+from helpers import add_scheme, url_exists, get_title
+
 def main_view(request):
     return render(request, 'main.html')
 

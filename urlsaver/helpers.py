@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-from urlparse import urlparse
+from urllib.parse import urlparse
 
 # Googlebot user-agent string
 user_agent = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
