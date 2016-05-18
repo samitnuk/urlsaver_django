@@ -9,16 +9,17 @@ from django.http import HttpResponse
 from .forms import (LoginForm, RegistrationForm,
                     EditForm, SearchForm, RestorePasswordForm)
 
-from helpers import add_scheme, url_exists, get_title
+from .helpers import add_scheme, url_exists, get_title
 
-def main_view(request):
-    return render(request, 'main.html')
+def main(request):
+    return render(request, 'main.jade')
 
-def main_view_with_path(request, path):
+def main_with_path(request, path):
+    path = request.get_full_path()
     return render(request, 'main_test.html', {'path': path})
 
 
-def register_view(request):
+def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
@@ -36,7 +37,7 @@ def register_view(request):
     return render(request, 'register.html', {'form': form})
 
 
-def login_view(request):
+def login(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -54,6 +55,14 @@ def login_view(request):
 
 
 @login_required(login_url='/login/')
-def logout_view(request):
+def logout(request):
     logout(request)
     return render(request, 'main.html')
+
+
+def contact(request):
+    return render(request, 'contact.jade')
+
+
+def about(request):
+    return render(request, 'about.jade')
