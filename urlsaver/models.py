@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class Locator(models.Model):
     url = models.CharField(max_length=500)
     title = models.CharField(max_length=500)
-    groupname = models.CharField(max_length=25)
+    groupname = models.CharField(max_length=25, blank=True)
     date = models.DateTimeField(auto_now_add=True)
     username = models.ForeignKey(User, on_delete=models.CASCADE)
 
