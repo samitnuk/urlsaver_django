@@ -1,0 +1,14 @@
+extends ./base.jade
+
+block title
+  title Main &#124; urlsaver.ua
+
+block main
+  .width-50
+    h3 {{ path }}
+    hr
+
+block nav
+  if not user.is_authenticated
+    a(href="{% url 'login' %}") Login
+    a(href="{% url 'register' %}") Register
