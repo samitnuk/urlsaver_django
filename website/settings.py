@@ -58,7 +58,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
-        'APP_DIRS': True,
+        # 'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -73,6 +73,7 @@ TEMPLATES = [
                     'django.template.loaders.app_directories.Loader',
                 ))
             ],
+            'builtins': ['pyjade.ext.django.templatetags'],
         },
     },
 ]
