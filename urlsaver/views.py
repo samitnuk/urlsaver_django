@@ -24,6 +24,11 @@ def get_groupnames(username):
                   .filter(username__username=username) \
                   .values_list('groupname', flat=True)))
 
+def save_url(username, path, groupname):
+    locator = Locator(url=add_scheme(path), title=get_title(path),
+                      groupname=groupname, username=username)
+    locator.save()
+
 
 # VIEWS |--------------------------------------------------------------------
 
