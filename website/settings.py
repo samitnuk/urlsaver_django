@@ -29,6 +29,8 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'auth.User'
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+
 # Application definition
 
 INSTALLED_APPS = [
