@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, logout
-from django.contrib.auth import login as login_user 
+from django.contrib.auth import login as login_user
 from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.models import User
@@ -24,16 +24,38 @@ def get_groupnames(username):
                   .filter(username__username=username) \
                   .values_list('groupname', flat=True)))
 
-def save_url(username, path, groupname):
+def save_url(request, username, path, groupname):
     locator = Locator(url=add_scheme(path), title=get_title(path),
                       groupname=groupname, username=username)
     locator.save()
+    if request.session.get('url', False):
+        request.session['url'] = ''
+        request.session['groupname'] = ''
+    return redirect(request, 'main')
 
 
 # VIEWS |--------------------------------------------------------------------
 
 def main(request):
-    return render(request, 'main.jade')
+    if request.user.is_authenticated:
+        # if request.session.get('url', False):
+        #     save_url(request,
+        #              request.user.username,
+        #              request.session['url'],
+        #              request.session['groupname'])
+        if request.method == "POST":
+            form = SearchForm(request.POST)
+            if form.is_valid():
+                query = form.cleaned_data['search']
+                return redirect(request, 'search_results', {'query': query})
+        else:
+            context ={}
+            context['form'] = SearchForm()
+            context['urls'] = get_urls(request.user.username)
+            context['groupnames'] = get_groupnames(request.user.username)
+            return render(request, 'urls.jade', context)
+
+    return render(request, 'home.jade')
 
 def main_with_path(request, path):
     path = get_groupnames(request.user.username)
@@ -77,6 +99,22 @@ def login(request):
 def logout(request):
     logout(request)
     return render(request, 'main.html')
+
+@login_required(login_url='/login/')
+def groupname(request, groupname):
+    pass
+
+@login_required(login_url='/login/')
+def edit(request, id):
+    pass
+
+@login_required(login_url='/login/')
+def delete(request, id):
+    pass
+
+@login_required(login_url='/login/')
+def search_results(request, query):
+    pass
 
 
 def contact(request):

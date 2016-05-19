@@ -8,6 +8,8 @@ urlpatterns = [
     url(r'^logout/', views.logout, name='logout'),
     url(r'^contact/', views.contact, name='contact'),
     url(r'^about/', views.about, name='about'),
+    url(r'^groupname/(?P<groupname>[a-zA-Z0-9_]+)', views.groupname,
+                                                    name='groupname'),
     url(r'^$', views.main, name='main'),
     url(r'^(?P<path>.+)', views.main_with_path, name='main_with_path'),
 ]

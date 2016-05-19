@@ -1,0 +1,50 @@
+extends ./base.jade
+
+//- {% load _formhelpers.jade %}
+mixin render_field(field)
+  | {% field(**kwargs)|safe %}
+    
+  if field.errors
+    for error in field.errors
+      p: strong !{error}
+
+block title
+  title Saved URLs &#124; urlsaver.ua
+
+block search
+  form(method="post", action="{% url 'main' %}").search
+    | {% csrf_token %}
+    | render_field(form.search)
+    input(type="submit", value="")
+
+block groups
+  .groups
+    | &#124; 
+    a(href="{% url 'main' %}") all links 
+    | &#124;
+    //- for groupname in groupnames
+    //-   if groupname != ''
+    //-     a(href="{% url 'groupname' %}" groupname=groupname)) #{groupname} 
+    //-     | &#124; 
+    //- a(href="{% url 'groupname' %}" groupname='ungrouped')) ungrouped links 
+    //- | &#124;
+
+block main
+  table
+    tbody
+      for url in urls
+        tr
+          td.pageicon
+            img(src="http://www.google.com/s2/favicons?domain=#{url.url}")
+          td
+            a(href='#{url.url}') #{url.title}
+          td.date
+            | url.date.strftime('%d.%m.%y | %H:%M')
+          td
+            .edit
+              a(href=url_for('edit_url', id=url.id)) edit 
+              | &#124; 
+              a(href=url_for('delete_url', id=url.id)) delete
+
+block nav
+  a(href="{% url 'logout' %}") Logout

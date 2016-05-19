@@ -1,0 +1,26 @@
+extends ./base.jade
+
+block title
+  title Home &#124; urlsaver.ua
+
+block main
+  .width-50
+    h1 Welcom to urlsaver!
+    hr
+    | This site will help you to save URLs from your browser's address bar.
+    br
+    br
+    | Please 
+    a(href=url_for("login")) Login 
+    | or 
+    a(href=url_for("register")) Register 
+    | and you can start saving (:
+    br
+    br
+    | For saving any URL just add before it <strong>urlsaver.ua/</strong>
+    | or <strong>groupname.urlsaver.ua/</strong> if you want save it to some group.
+
+
+block nav
+  a(href=url_for("login")) Login
+  a(href=url_for("register")) Register
