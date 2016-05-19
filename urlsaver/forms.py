@@ -48,7 +48,7 @@ class EditForm(forms.Form):
 
 
 class SearchForm(forms.Form):
-    pass
+    search = forms.CharField()
 
 
 class RestorePasswordForm(forms.Form):
