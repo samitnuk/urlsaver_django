@@ -4,8 +4,10 @@ from django.contrib.auth.models import User
 
 
 class LoginForm(forms.Form):
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    email = forms.EmailField(
+        widget=forms.TextInput(attrs={'placeholder': 'Email'}))
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
 
     def clean(self):
         cleaned_data = super(LoginForm, self).clean()
@@ -23,9 +25,12 @@ class LoginForm(forms.Form):
 
 
 class RegistrationForm(forms.Form):
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
-    confirm = forms.CharField(widget=forms.PasswordInput)
+    email = forms.EmailField(
+        widget=forms.TextInput(attrs={'placeholder': 'Email'}))
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+    confirm = forms.CharField(
+        widget=forms.PasswordInput(attrs={'placeholder': 'Repeat Password'}))
 
     def clean_email(self):
         email = self.cleaned_data['email']
