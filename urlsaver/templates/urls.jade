@@ -1,33 +1,27 @@
 extends ./base.jade
 
-//- {% load _formhelpers.jade %}
-mixin render_field(field)
-  | {% field(**kwargs)|safe %}
-    
-  if field.errors
-    for error in field.errors
-      p: strong !{error}
+{% from "_formhelpers.jade" import render_field %}
 
 block title
   title Saved URLs &#124; urlsaver.ua
 
 block search
-  form(method="post", action="{% url 'main' %}").search
-    | {% csrf_token %}
+  form(method="post", action=url('main')).search
+    | csrf_token
     | render_field(form.search)
     input(type="submit", value="")
 
 block groups
   .groups
     | &#124; 
-    a(href="{% url 'main' %}") all links 
+    a(href=url('main')) all links 
     | &#124;
-    //- for groupname in groupnames
-    //-   if groupname != ''
-    //-     a(href="{% url 'groupname' %}" groupname=groupname)) #{groupname} 
-    //-     | &#124; 
-    //- a(href="{% url 'groupname' %}" groupname='ungrouped')) ungrouped links 
-    //- | &#124;
+    for groupname in groupnames
+      if groupname != ''
+        a(href=url('groupname', groupname=groupname)) #{groupname} 
+        | &#124; 
+    a(href=url('groupname', groupname=groupname)) ungrouped links 
+    | &#124;
 
 block main
   table
@@ -42,9 +36,9 @@ block main
             | url.date.strftime('%d.%m.%y | %H:%M')
           td
             .edit
-              a(href=url_for('edit_url', id=url.id)) edit 
+              a(href=url('edit', id=url.id)) edit 
               | &#124; 
-              a(href=url_for('delete_url', id=url.id)) delete
+              a(href=url('delete', id=url.id)) delete
 
 block nav
-  a(href="{% url 'logout' %}") Logout
+  a(href=url('logout')) Logout

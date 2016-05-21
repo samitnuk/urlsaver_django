@@ -9,15 +9,15 @@ html
     meta(name="author", content="Basil Dubyk")
     meta(name="viewport", content="width=device-width, initial-scale=1")
 
-    link(rel="stylesheet", href=url_for("static", filename="css/normalize.css"))
-    link(rel="stylesheet", href=url_for("static", filename="css/style.css"))
-    link(rel="shortcut icon", href=url_for("static", filename="img/favicon.ico"))
+    link(rel="stylesheet", href=static('css/normalize.css'))
+    link(rel="stylesheet", href=static('css/style.css'))
+    link(rel="shortcut icon", href=static('img/favicon.ico'))
 
   body
     .container
       header
         .logo
-          a(href="{% url 'main' %}") urlsaver
+          a(href=url('main')) urlsaver
 
         block search 
 
@@ -32,8 +32,8 @@ html
 
           block nav
 
-          a(href="{% url 'contact' %}") Contact
-          a(href="{% url 'about' %}") About
+          a(href=url('contact')) Contact
+          a(href=url('about')) About
         .copyright
           .year 2016
-          a(href="{% url 'main' %}") urlsaver.ua
+          a(href=url('main')) urlsaver.ua

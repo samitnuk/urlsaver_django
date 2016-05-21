@@ -1,0 +1,33 @@
+extends ./base.jade
+
+//- {% from '_formhelpers.jade' import render_field %}
+
+block title
+  title Login &#124; urlsaver.ua
+
+
+block groups
+    //- {% with messages = get_flashed_messages() %}
+    //- {% if messages %}
+    //- .messages
+    //-   {% for message in messages %}
+    //-   p {{ message }}
+    //-   {% endfor %}
+    //- {% endif %}
+    //- {% endwith %}
+
+block main
+  .width-50
+    form(method="post", action=url("login"))
+      input(type='hidden', value='{{ csrf_token }}', name='csrfmiddlewaretoken')
+      | {{ form.email }}
+      | {{ form.password }}
+      input(type="submit", value="Login")
+    br
+    br
+    | Don't have an account? &#124; 
+    a(href=url("register")) Register 
+    | &#124;
+    br
+    br
+    a(href=url("restore_password")) Forgot your password?

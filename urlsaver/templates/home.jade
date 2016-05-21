@@ -11,9 +11,9 @@ block main
     br
     br
     | Please 
-    a(href=url_for("login")) Login 
+    a(href=url('login')) Login 
     | or 
-    a(href=url_for("register")) Register 
+    a(href=url('register')) Register 
     | and you can start saving (:
     br
     br
@@ -22,5 +22,5 @@ block main
 
 
 block nav
-  a(href=url_for("login")) Login
-  a(href=url_for("register")) Register
+  a(href=url('login')) Login
+  a(href=url('register')) Register
