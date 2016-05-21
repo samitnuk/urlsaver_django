@@ -53,6 +53,7 @@ def main(request):
             context['form'] = SearchForm()
             context['urls'] = get_urls(request.user.username)
             context['groupnames'] = get_groupnames(request.user.username)
+            print(context['groupnames'])
             return render(request, 'urls.jade', context)
 
     return render(request, 'home.jade')

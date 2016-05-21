@@ -7,8 +7,8 @@ block title
 
 block search
   form(method="post", action=url('main')).search
-    | csrf_token
-    | render_field(form.search)
+    input(type='hidden', value='{{ csrf_token }}', name='csrfmiddlewaretoken')
+    | {{ render_field(form.search) }}
     input(type="submit", value="")
 
 block groups
@@ -16,11 +16,12 @@ block groups
     | &#124; 
     a(href=url('main')) all links 
     | &#124;
-    for groupname in groupnames
-      if groupname != ''
-        a(href=url('groupname', groupname=groupname)) #{groupname} 
-        | &#124; 
-    a(href=url('groupname', groupname=groupname)) ungrouped links 
+    if groupnames
+      for g in groupnames
+        if g != ''
+          a(href=url('groupname', kwargs={'groupname':g})) #{ g } 
+          | &#124; 
+      a(href=url('groupname', kwargs={'groupname':'ungrouped'})) ungrouped links 
     | &#124;
 
 block main
@@ -37,8 +38,8 @@ block main
           td
             .edit
               a(href=url('edit', id=url.id)) edit 
-              | &#124; 
-              a(href=url('delete', id=url.id)) delete
+  //-             | &#124; 
+  //-             a(href=url('delete', id=url.id)) delete
 
 block nav
   a(href=url('logout')) Logout
