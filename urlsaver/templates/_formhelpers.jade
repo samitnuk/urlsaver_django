@@ -1,6 +1,6 @@
 {% macro render_field(field) %}
 
-| #{field(**kwargs)|safe}
+| {{ field }}
   
 if field.errors
   for error in field.errors

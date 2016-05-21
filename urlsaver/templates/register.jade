@@ -3,20 +3,18 @@ extends ./base.jade
 {% from "_formhelpers.jade" import render_field %}
 
 block title
-  title Login &#124; urlsaver.ua
+  title Register &#124; urlsaver.ua
 
 block main
   .width-50
-    form(method="post", action=url("login"))
+    form(method="post", action=url("register"))
       input(type='hidden', value='{{ csrf_token }}', name='csrfmiddlewaretoken')
       | {{ render_field(form.email) }}
       | {{ render_field(form.password) }}
-      input(type="submit", value="Login")
+      | {{ render_field(form.confirm) }}
+      input(type="submit", value="Register")
     br
     br
-    | Don't have an account? &#124; 
-    a(href=url("register")) Register 
+    | Already have an account? &#124; 
+    a(href=url("login")) Login 
     | &#124;
-    br
-    br
-    a(href=url("restore_password")) Forgot your password?
