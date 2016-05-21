@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^about/', views.about, name='about'),
     url(r'^groupname/(?P<groupname>[a-zA-Z0-9_]+)', views.groupname,
                                                     name='groupname'),
+    url(r'^restore_password/', views.restore_password, name='restore_password'),
     url(r'^$', views.main, name='main'),
     url(r'^(?P<path>.+)', views.main_with_path, name='main_with_path'),
 ]
