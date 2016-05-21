@@ -75,7 +75,7 @@ def register(request):
     else: # if a GET (or any other method) we'll create a blank form
         form = RegistrationForm()
 
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'register.jade', {'form': form})
 
 
 def login(request):
@@ -92,13 +92,16 @@ def login(request):
                 return redirect('main')
     else: # if a GET (or any other method) we'll create a blank form
         form = LoginForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'login.jade', {'form': form})
 
 
 @login_required(login_url='/login/')
 def logout(request):
     logout(request)
     return render(request, 'main.html')
+
+def restore_password(request):
+    pass
 
 @login_required(login_url='/login/')
 def groupname(request, groupname):
