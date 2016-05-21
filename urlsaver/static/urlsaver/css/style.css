@@ -1,0 +1,169 @@
+@import url(https://fonts.googleapis.com/css?family=Rubik&subset=latin,cyrillic);
+html {
+  font-size: 62.5%; }
+
+body {
+  font-size: 1.2em;
+  line-height: 1.5;
+  font-weight: 400;
+  font-family: "Rubik", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #888; }
+
+h1 {
+  font-size: 1.5rem; }
+
+a {
+  text-decoration: none;
+  color: teal; }
+  a:hover {
+    color: #888; }
+
+.container {
+  max-width: 860px;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+
+header {
+  height: 40px;
+  display: flex;
+  justify-content: space-between; }
+
+.search {
+  margin-top: 18px;
+  margin-right: 5px; }
+
+.logo {
+  padding: 5px;
+  padding-top: 10px;
+  width: 100px;
+  background: teal;
+  text-align: center; }
+  .logo a,
+  .logo a:hover {
+    border: none;
+    color: white;
+    background: teal;
+    font-size: 1.5rem; }
+
+.groups {
+  margin-top: 25px;
+  padding: 5px; }
+
+.width-50 {
+  width: 50%;
+  margin: 0 auto; }
+
+.width-80 {
+  width: 80%;
+  margin: 0 auto; }
+
+.main {
+  min-height: 50%;
+  margin: 25px 0; }
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem; }
+
+.nav {
+  padding-top: 6px; }
+  .nav a {
+    margin-left: 10px; }
+    .nav a:first-child {
+      padding-left: 5px;
+      margin-left: 0; }
+
+.copyright a,
+.copyright a:hover {
+  border: none;
+  color: white;
+  background: teal;
+  font-size: 15px;
+  background: teal;
+  display: block;
+  height: 30px;
+  float: right;
+  margin-left: 10px;
+  padding: 3px 10px 0 10px; }
+
+.year {
+  padding-top: 6px;
+  display: block;
+  float: left; }
+
+input {
+  outline: none; }
+
+input[type="text"],
+input[type="password"] {
+  font-size: 1.5rem;
+  border: none;
+  border-bottom: 1px solid #888; }
+
+header input[type="text"] {
+  font-size: 1.2rem;
+  width: 200px; }
+header input[type="submit"] {
+  background: transparent url("../img/search.png") no-repeat;
+  border-style: none;
+  height: 14px;
+  width: 14px; }
+
+.width-50 input[type="submit"],
+.width-80 input[type="submit"] {
+  color: teal;
+  border: 1px solid #888;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  background: none;
+  width: 100%; }
+  .width-50 input[type="submit"]:hover,
+  .width-80 input[type="submit"]:hover {
+    background: teal;
+    color: white; }
+.width-50 input[type="text"],
+.width-50 input[type="password"],
+.width-80 input[type="text"],
+.width-80 input[type="password"] {
+  margin-bottom: 15px;
+  width: 100%; }
+.width-50 p,
+.width-80 p {
+  margin-top: -10px;
+  text-align: right; }
+
+table {
+  min-width: 100%;
+  font-size: 15px; }
+
+.edit,
+.date {
+  font-size: 1.2rem;
+  text-align: right; }
+
+.edit {
+  visibility: collapse; }
+
+tr:hover {
+  background-color: #EEE; }
+
+tr:hover .edit {
+  visibility: visible;
+  font-size: 12px;
+  text-align: right; }
+
+th,
+td {
+  padding: 8px; }
+  th:first-child,
+  td:first-child {
+    padding-left: 5px; }
+
+.pageicon {
+  width: 16px; }
