@@ -16,12 +16,11 @@ block groups
     | &#124; 
     a(href=url('main')) all links 
     | &#124;
-    if groupnames
-      for g in groupnames
-        if g != ''
-          a(href=url('groupname', kwargs={'groupname':g})) #{ g } 
-          | &#124; 
-      a(href=url('groupname', kwargs={'groupname':'ungrouped'})) ungrouped links 
+    for g in groupnames
+      if g != ''
+        a(href=url('groupname', kwargs={'groupname':g})) #{ g } 
+        | &#124; 
+    a(href=url('groupname', kwargs={'groupname':'ungrouped'})) ungrouped links 
     | &#124;
 
 block main
@@ -34,12 +33,12 @@ block main
           td
             a(href='#{url.url}') #{url.title}
           td.date
-            | url.date.strftime('%d.%m.%y | %H:%M')
+            | {{ url.date.strftime('%d.%m.%y | %H:%M') }}
           td
             .edit
-              a(href=url('edit', id=url.id)) edit 
-  //-             | &#124; 
-  //-             a(href=url('delete', id=url.id)) delete
+              //- a(href=url('edit', kwargs={'id':url.id})) edit 
+              //- | &#124; 
+              //- a(href=url('delete', kwargs={'id':url.id})) delete
 
 block nav
   a(href=url('logout')) Logout
