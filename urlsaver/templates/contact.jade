@@ -9,6 +9,6 @@ block main
     hr
 
 block nav
-  if not user.is_authenticated
-    a(href="{% url 'login' %}") Login
-    a(href="{% url 'register' %}") Register
+  if not request.user.is_authenticated
+    a(href=url('login')) Login
+    a(href=url('register')) Register
