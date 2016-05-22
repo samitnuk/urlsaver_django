@@ -10,6 +10,8 @@ urlpatterns = [
     url(r'^about/', views.about, name='about'),
     url(r'^groupname/(?P<groupname>[a-zA-Z0-9_]+)', views.groupname,
                                                     name='groupname'),
+    url(r'^edit/(?P<id>[0-9]+)', views.edit, name='edit'),
+    url(r'^delete/(?P<id>[0-9]+)', views.delete, name='delete'),
     url(r'^restore_password/', views.restore_password, name='restore_password'),
     url(r'^$', views.main, name='main'),
     url(r'^(?P<path>.+)', views.main_with_path, name='main_with_path'),
