@@ -1,5 +1,6 @@
 django
 pyjade
+jinja2
 
 requests
 beautifulsoup4
