@@ -110,7 +110,17 @@ def groupname(request, groupname):
 
 @login_required(login_url='/login/')
 def edit(request, id):
-    return redirect('main')
+    url_row = Locator.objects.filter(id=id)
+    if reguest.method == 'POST':
+        form = EditForm(request.POST)
+        url_row.title = form.cleaned_data['title']
+        url_row.url = form.cleaned_data['url']
+        url_row.groupname = form.cleaned_data['groupname']
+        url_row.save()
+        return redirect('main')
+    else:
+        form = EditForm()
+    return redirect('edit.jade', {'form':form, 'url':url_row})
 
 @login_required(login_url='/login/')
 def delete(request, id):
