@@ -110,11 +110,13 @@ def groupname(request, groupname):
 
 @login_required(login_url='/login/')
 def edit(request, id):
-    pass
+    return redirect('main')
 
 @login_required(login_url='/login/')
 def delete(request, id):
-    pass
+    url = Locator.objects.filter(id=id)
+    url.delete()
+    return redirect('main')
 
 @login_required(login_url='/login/')
 def search_results(request, query):
