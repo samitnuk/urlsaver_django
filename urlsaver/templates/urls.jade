@@ -36,9 +36,9 @@ block main
             | {{ url.date.strftime('%d.%m.%y | %H:%M') }}
           td
             .edit
-              //- a(href=url('edit', kwargs={'id':url.id})) edit 
-              //- | &#124; 
-              //- a(href=url('delete', kwargs={'id':url.id})) delete
+              a(href="/edit/{{ url.id }}") edit 
+              | &#124; 
+              a(href="/delete/{{ url.id }}") delete
 
 block nav
   a(href=url('logout')) Logout
