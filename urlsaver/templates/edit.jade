@@ -7,9 +7,9 @@ block title
 
 block main
   .width-80
-    form(method="post", action=url_for("edit_url", id=url.id))
+    form(method="post", action=url("edit_url", kwargs={'id'=url.id}))
       input(type='hidden', value='{{ csrf_token }}', name='csrfmiddlewaretoken')
-      | !{render_field(form.title, value=url.title)}
-      | !{render_field(form.url, value=url.url)}
-      | !{render_field(form.groupname, placeholder=" -- please enter groupname here --",value=url.groupname)}
+      | {{ render_field(form.title, value=url.title) }}
+      | {{ render_field(form.url, value=url.url) }}
+      | {{render_field(form.groupname, placeholder=" -- please enter groupname here --",value=url.groupname) }}
       input(type="submit", value="Save changes")
