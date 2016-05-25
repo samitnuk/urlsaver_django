@@ -58,6 +58,7 @@ def main(request):
 
     return render(request, 'home.jade')
 
+
 def main_with_path(request, path):
     if url_exists(path):
         if request.user.is_authenticated:
@@ -108,12 +109,27 @@ def logout(request):
     logout_user(request)
     return redirect('main')
 
+
 def restore_password(request):
     pass
 
+
 @login_required(login_url='/login/')
 def groupname(request, groupname):
+    form = SearchForm(request.POST)
+    if form.is_valid():
+        query = form.cleaned_data['search']
+        return redirect(request, 'search_results', {'query': query})
+    if groupname == 'ungrouped':
+        groupname = ''
+    context ={}
+    context['form'] = SearchForm()
+    urls = get_urls(request.user.username)
+    context['urls'] = urls.filter(groupname=groupname)
+    context['groupnames'] = get_groupnames(request.user.username)
+    return render(request, 'urls.jade', context)
     pass
+
 
 @login_required(login_url='/login/')
 def edit(request, id):
@@ -142,6 +158,7 @@ def delete(request, id):
     url = Locator.objects.filter(id=id)
     url.delete()
     return redirect('main')
+
 
 @login_required(login_url='/login/')
 def search_results(request, query):
