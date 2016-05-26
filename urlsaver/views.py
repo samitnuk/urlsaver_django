@@ -50,10 +50,11 @@ def main(request):
                 query = form.cleaned_data['search']
                 return redirect(request, 'search_results', {'query': query})
         else:
-            context ={}
-            context['form'] = SearchForm()
-            context['urls'] = get_urls(request.user.username)
-            context['groupnames'] = get_groupnames(request.user.username)
+            context = {
+                'form' : SearchForm(),
+                'urls' : get_urls(request.user.username),
+                'groupnames' : get_groupnames(request.user.username),
+            }
             return render(request, 'urls.jade', context)
 
     return render(request, 'home.jade')
@@ -122,11 +123,12 @@ def groupname(request, groupname):
         return redirect(request, 'search_results', {'query': query})
     if groupname == 'ungrouped':
         groupname = ''
-    context ={}
-    context['form'] = SearchForm()
     urls = get_urls(request.user.username)
-    context['urls'] = urls.filter(groupname=groupname)
-    context['groupnames'] = get_groupnames(request.user.username)
+    context = {
+        'form' : SearchForm(),
+        'urls' : urls.filter(groupname=groupname),
+        'groupnames' : get_groupnames(request.user.username),
+    }
     return render(request, 'urls.jade', context)
     pass
 
