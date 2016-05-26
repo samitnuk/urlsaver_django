@@ -3,10 +3,9 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_user
 from django.contrib.auth import logout as logout_user
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
 
 from django.contrib.auth.models import User
-
-from django.http import HttpResponse
 
 from .forms import (LoginForm, RegistrationForm,
                     EditForm, SearchForm, RestorePasswordForm)
@@ -135,7 +134,7 @@ def groupname(request, groupname):
 
 @login_required(login_url='/login/')
 def edit(request, id):
-    url_row = Locator.objects.get(id=id)
+    url_row = get_object_or_404(Locator, id=id)
     print('---', url_row, '---')
     if request.method == 'POST':
         form = EditForm(request.POST)
@@ -157,8 +156,8 @@ def edit(request, id):
 
 @login_required(login_url='/login/')
 def delete(request, id):
-    url = Locator.objects.filter(id=id)
-    url.delete()
+    url_row = get_object_or_404(Locator, id=id)
+    url_row.delete()
     return redirect('main')
 
 
