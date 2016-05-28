@@ -14,5 +14,5 @@ urlpatterns = [
     url(r'^delete/(?P<id>\d+)', views.delete, name='delete'),
     url(r'^restore_password/', views.restore_password, name='restore_password'),
     url(r'^$', views.main, name='main'),
-    url(r'^(?P<path>.+)', views.main_with_path, name='main_with_path'),
+    url(r'^.+', views.main_with_path, name='main_with_path'),
 ]
