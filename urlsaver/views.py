@@ -59,7 +59,11 @@ def main(request):
     return render(request, 'home.jade')
 
 
-def main_with_path(request, path):
+def main_with_path(request):
+    path = request.get_full_path()
+    # get_full_path() returns string that begin with "/"
+    # need delete "/" to continue
+    path = path[1:]
     if url_exists(path):
         if request.user.is_authenticated:
             save_url(request, request.user.username, path, '')
